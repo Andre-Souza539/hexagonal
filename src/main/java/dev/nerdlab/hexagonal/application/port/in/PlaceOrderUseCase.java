@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public interface PlaceOrderUseCase {
 
-    UUID placeOrder(Order order);
+    UUID placeOrder(PlaceOrderCommand command);
     Order findById(String id);
 
 

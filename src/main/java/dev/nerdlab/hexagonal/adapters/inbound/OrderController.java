@@ -2,6 +2,7 @@ package dev.nerdlab.hexagonal.adapters.inbound;
 
 import dev.nerdlab.hexagonal.adapters.inbound.dto.OrderDTO;
 import dev.nerdlab.hexagonal.adapters.inbound.web.OrderWebMapper;
+import dev.nerdlab.hexagonal.application.port.in.PlaceOrderCommand;
 import dev.nerdlab.hexagonal.application.port.in.PlaceOrderUseCase;
 import dev.nerdlab.hexagonal.domain.model.Order;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +20,8 @@ public class OrderController {
 
     @PostMapping()
     public ResponseEntity<String> placeOrder(@RequestBody OrderDTO dto){
-        Order order = mapper.dtoToDomain(dto);
-        UUID orderId = useCase.placeOrder(order);
+        PlaceOrderCommand command = new PlaceOrderCommand(dto.getTotal());
+        UUID orderId = useCase.placeOrder(command);
         return ResponseEntity.ok(orderId.toString());
     }
 
