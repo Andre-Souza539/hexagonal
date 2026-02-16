@@ -20,7 +20,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class OrderEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private BigDecimal total;
     private OrderStatus status;
